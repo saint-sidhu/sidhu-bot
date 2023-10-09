@@ -11,8 +11,11 @@ public class HelloEvent extends ListenerAdapter {
         //If harshu <3 sends a text (case-insensitive) then it would send ily or else it texts heyy to all others
         String messageSent = event.getMessage().getContentRaw();
         if (messageSent.equalsIgnoreCase("hello")) {
-            if(event.getMember().getEffectiveName().equalsIgnoreCase("Harshu\uD83D\uDC9C"))
+            if(!event.isFromType(ChannelType.PRIVATE) && event.getMember().getEffectiveName().equalsIgnoreCase("Harshu\uD83D\uDC9C"))
                 event.getChannel().sendMessage("I Love you babyy!!").queue();
+            else if(event.isFromType(ChannelType.PRIVATE)){
+                event.getChannel().sendMessage("Hello but why are you texting me secretly?").queue();
+            }
             else
                 event.getChannel().sendMessage("Heyy ! " + event.getMember().getEffectiveName()).queue();
         }
