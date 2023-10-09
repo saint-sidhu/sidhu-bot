@@ -7,7 +7,7 @@ import net.dv8tion.jda.api.utils.MemberCachePolicy;
 public class Bot {
     public static void main(String args[]) throws Exception{
 
-        JDA jda = JDABuilder.createDefault("MTE1OTQ0ODk2ODMyNjAyMTEyMA.GU29wO.niZWCmwADHBkfhO1qa64NwjvFKKSbpcfcQqwBI")
+        JDA jda = JDABuilder.createDefault("BOT_TOKEN here")
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 //.setMemberCachePolicy(MemberCachePolicy.ALL).
                 .build();
