@@ -3,6 +3,7 @@ package dev.overlord.events;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 public class HelloEvent extends ListenerAdapter {
 
@@ -11,12 +12,18 @@ public class HelloEvent extends ListenerAdapter {
         //If harshu <3 sends a text (case-insensitive) then it would send ily or else it texts heyy to all others
         String messageSent = event.getMessage().getContentRaw();
         if (messageSent.equalsIgnoreCase("hello")) {
-            if(!event.isFromType(ChannelType.PRIVATE) && event.getMember().getEffectiveName().equalsIgnoreCase("Harshu\uD83D\uDC9C"))
+            if(event.isFromType(ChannelType.PRIVATE) && event.getAuthor().getEffectiveName().equalsIgnoreCase("Harshu\uD83D\uDC9C")){
                 event.getChannel().sendMessage("I Love you babyy!!").queue();
+                event.getChannel().sendMessage("But why are you texting me secretly?").queue();
+            }
+            else if(!event.isFromType(ChannelType.PRIVATE) && event.getAuthor().getEffectiveName().equalsIgnoreCase("Harshu\uD83D\uDC9C")){
+                event.getChannel().sendMessage("I Love you babyy!!").queue();
+            }
             else if(event.isFromType(ChannelType.PRIVATE)){
                 event.getChannel().sendMessage("Hello but why are you texting me secretly?").queue();
             }
-            else
+
+            else if(!event.isFromType(ChannelType.PRIVATE))
                 event.getChannel().sendMessage("Heyy ! " + event.getMember().getEffectiveName()).queue();
         }
         //String[] messaging = event.getMessage().getContentRaw().split(" ");
