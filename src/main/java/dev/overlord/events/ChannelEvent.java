@@ -23,6 +23,5 @@ public class ChannelEvent extends ListenerAdapter {
     }
 
     public void onGenericChannelUpdate(GenericChannelUpdateEvent event){
-
     }
 }

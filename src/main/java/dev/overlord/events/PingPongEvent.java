@@ -7,7 +7,7 @@ public class PingPongEvent extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event){
         String messageSent = event.getMessage().getContentRaw();
 
-        if(messageSent.equalsIgnoreCase("!ping")){
+        if(messageSent.equalsIgnoreCase("/ping")){
             event.getChannel().sendMessage("pong").queue();
         }
     }
