@@ -1,4 +1,6 @@
 import dev.overlord.commands.CalculateCommand;
+import dev.overlord.commands.GreetCommand;
+import dev.overlord.commands.InviteCommand;
 import dev.overlord.events.ChannelEvent;
 import dev.overlord.events.HelloEvent;
 import dev.overlord.events.PingPongEvent;
@@ -19,6 +21,7 @@ public class Bot {
         jda.addEventListener(new PingPongEvent());
         jda.addEventListener(new ChannelEvent());
         jda.addEventListener(new CalculateCommand());
+        jda.addEventListener(new GreetCommand());
+        jda.addEventListener(new InviteCommand());
     }
-
 }
