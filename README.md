@@ -15,3 +15,7 @@ Bot now notifies if someone creates/deletes a channel/category in server
 Added a new java command class which does calculation(add/sub/mul/div) .
 <br>
 Minor change: Now the bot replies to hi, hey and hello.
+<br>
+5th Commit:
+<br>
+Added slash commands for greet(which greets people) & invite (which sends invite link in chat)
