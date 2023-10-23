@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class HelloEvent extends ListenerAdapter {
 
-    public void onMessageReceived(MessageReceivedEvent event){
+    public void onMessageReceived(@NotNull MessageReceivedEvent event){
 
         //If harshu <3 sends a text (case-insensitive) then it would send ily or else it texts heyy to all others
         String messageSent = event.getMessage().getContentRaw();

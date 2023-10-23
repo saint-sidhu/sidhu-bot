@@ -2,10 +2,11 @@ package dev.overlord.commands;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 public class GreetCommand extends ListenerAdapter {
 
-    public void onMessageReceived(MessageReceivedEvent event){
+    public void onMessageReceived(@NotNull MessageReceivedEvent event){
         String message[] = event.getMessage().getContentRaw().split(" ");
         if(message[0].equalsIgnoreCase("/greet") &&
                 message.length == 1 && event.getAuthor().getEffectiveName().equalsIgnoreCase("Sidhu")){
