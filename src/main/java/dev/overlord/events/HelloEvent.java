@@ -21,6 +21,9 @@ public class HelloEvent extends ListenerAdapter {
             else if(event.getAuthor().getEffectiveName().equalsIgnoreCase("Sidhu")){
                 event.getChannel().sendMessage("How may I help you today, "+event.getMember().getEffectiveName() +"-sama ?").queue();
             }
+            else if(event.getAuthor().getEffectiveName().equalsIgnoreCase("ankita_nayak")){
+                event.getChannel().sendMessage("Ughhh , it's you again, "+event.getMember().getEffectiveName() +" ?").queue();
+            }
             else if(!event.isFromType(ChannelType.PRIVATE) && event.getAuthor().getEffectiveName().equalsIgnoreCase("Harshu\uD83D\uDC9C")){
                 event.getChannel().sendMessage("I Love you babyy!!").queue();
             }
