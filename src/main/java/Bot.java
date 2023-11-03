@@ -1,6 +1,8 @@
 import dev.overlord.commands.*;
 import dev.overlord.events.HelloEvent;
 import dev.overlord.events.PingPongEvent;
+import dev.overlord.slashcommands.CommandRegistrar;
+import dev.overlord.slashcommands.ModalCommandManager;
 import dev.overlord.slashcommands.SlashCommandManager;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -26,11 +28,15 @@ public class Bot {
         builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
         builder.enableIntents(GatewayIntent.MESSAGE_CONTENT,
                 GatewayIntent.GUILD_MEMBERS,
-                GatewayIntent.GUILD_PRESENCES);
-        //builder.setMemberCachePolicy(MemberCachePolicy.ALL);
+                GatewayIntent.GUILD_PRESENCES,GatewayIntent.GUILD_VOICE_STATES);
+        //builder.setMemberCachePolicy(MemberCachePolicy.ONLINE);
+        //builder.setChunkingFilter(ChunkingFilter.ALL);//on startup it will cache all online members rather than lazy loading
+        //builder.enableCache(CacheFlag.ACTIVITY,CacheFlag.VOICE_STATE,CacheFlag.ONLINE_STATUS);
         shardManager = builder.build();
 
         //Register listeners
+        shardManager.addEventListener(new CommandRegistrar());
+        shardManager.addEventListener(new ModalCommandManager());
         shardManager.addEventListener(new SlashCommandManager());
         shardManager.addEventListener(new HelloEvent());
         shardManager.addEventListener(new PingPongEvent());
@@ -40,6 +46,8 @@ public class Bot {
         shardManager.addEventListener(new InviteCommand());
         shardManager.addEventListener(new FilterCommand());
         shardManager.addEventListener(new WelcomeEvent());
+
+        //shardManager.addEventListener(new ActivityCacheEvent()); --> turn it on and and turn on the cache intents too
     }
     public ShardManager getShardManager(){
         return shardManager;
