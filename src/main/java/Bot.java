@@ -1,9 +1,7 @@
 import dev.overlord.commands.*;
 import dev.overlord.events.HelloEvent;
 import dev.overlord.events.PingPongEvent;
-import dev.overlord.slashcommands.CommandRegistrar;
-import dev.overlord.slashcommands.ModalCommandManager;
-import dev.overlord.slashcommands.SlashCommandManager;
+import dev.overlord.slashcommands.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
@@ -24,7 +22,7 @@ public class Bot {
         config = Dotenv.configure().load();
         String token = config.get("TOKEN");
         DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
-        builder.setActivity(Activity.playing("with Dank Memer's mom"));
+        builder.setActivity(Activity.playing("with Broski's mom"));
         builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
         builder.enableIntents(GatewayIntent.MESSAGE_CONTENT,
                 GatewayIntent.GUILD_MEMBERS,
@@ -36,6 +34,7 @@ public class Bot {
 
         //Register listeners
         shardManager.addEventListener(new CommandRegistrar());
+        shardManager.addEventListener(new ButtonsTesting());
         shardManager.addEventListener(new ModalCommandManager());
         shardManager.addEventListener(new SlashCommandManager());
         shardManager.addEventListener(new HelloEvent());
@@ -46,6 +45,8 @@ public class Bot {
         shardManager.addEventListener(new InviteCommand());
         shardManager.addEventListener(new FilterCommand());
         shardManager.addEventListener(new WelcomeEvent());
+        shardManager.addEventListener(new ModMail());
+        shardManager.addEventListener(new DropdownMenu());
 
         //shardManager.addEventListener(new ActivityCacheEvent()); --> turn it on and and turn on the cache intents too
     }

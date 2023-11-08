@@ -1,12 +1,11 @@
 package dev.overlord.slashcommands;
 
-import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
-import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
+
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.interactions.commands.build.CommandData;
-import net.dv8tion.jda.api.interactions.commands.build.Commands;
+
 import net.dv8tion.jda.api.interactions.components.ActionRow;
 import net.dv8tion.jda.api.interactions.components.text.TextInput;
 import net.dv8tion.jda.api.interactions.components.text.TextInputStyle;
@@ -14,6 +13,7 @@ import net.dv8tion.jda.api.interactions.modals.Modal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ModalCommandManager extends ListenerAdapter {
 
@@ -51,7 +51,14 @@ public class ModalCommandManager extends ListenerAdapter {
             String name = event.getValue("wassup-name").getAsString();
             String message = event.getValue("wassup-message").getAsString();
 
-            event.reply("Hello, "+ name +".Message came from somewhere\n"+message).queue();
+            Optional<Member> memberOptional =event.getGuild().getMembersByName(name,true).stream().findAny();
+
+            if(memberOptional.isPresent()){
+                event.reply("Hello,"+ memberOptional.get().getAsMention() +".Message came from somewhere\n"+message).queue();
+            }
+            else{
+                event.reply("Hello, "+ name +".Message came from somewhere\n"+message).queue();
+            }
         }
     }
 }

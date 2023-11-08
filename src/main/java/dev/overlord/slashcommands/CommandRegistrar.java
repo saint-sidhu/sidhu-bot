@@ -63,6 +63,16 @@ public class CommandRegistrar extends ListenerAdapter {
         //Modals for name, message
         commands.add(Commands.slash("wassup","say what's up"));
 
+        //Buttons-Hello
+        commands.add(Commands.slash("hello","Button testing"));
+
+        commands.add(Commands.slash("support","support for your queries"));
+
+        //Dropdown --> StringSelect
+        commands.add(Commands.slash("food","Dropdown of some food items to choose from"));
+        //Dropdown --> EntitySelect
+        commands.add(Commands.slash("highfive","High-Five another peasant present here"));
+
         event.getGuild().updateCommands().addCommands(commands).queue();
     }
 
@@ -113,6 +123,17 @@ public class CommandRegistrar extends ListenerAdapter {
 
         //Modals for name, message
         commandData.add(Commands.slash("wassup","say what's up"));
+
+
+        //Buttons-Hello
+        commandData.add(Commands.slash("hello","Button testing"));
+
+        commandData.add(Commands.slash("support","support for your queries"));
+
+        //Dropdown --> StringSelect
+        commandData.add(Commands.slash("food","Dropdown of some food items to choose from"));
+        //Dropdown --> EntitySelect
+        commandData.add(Commands.slash("highfive","High-Five another peasant present here"));
 
 
         event.getGuild().updateCommands().addCommands(commandData).queue();
